@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Crikey Counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom focus rings to match the red theme */
+        textarea:focus, input:focus {
+            border-color: #DC2626 !important; /* red-600 */
+            box-shadow: 0 0 0 2px #FCA5A5 !important; /* red-300 */
+            outline: none;
+        }
+    </style>
+</head>
+<body class="h-full">
+    <div class="min-h-full flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
+        <!-- Main container with red top border, no rounded corners -->
+        <div class="max-w-2xl w-full bg-white p-8 sm:p-10 border-t-4 border-red-600">
+
+            <h1 class="text-3xl font-extrabold text-red-600 mb-8">The Crikey Counter</h1>
+
+            <!-- Page Title Input -->
+            <div>
+                <div class="flex justify-between items-baseline">
+                    <label for="titleInput" class="block text-lg font-bold text-gray-900">Page Title</label>
+                    <div class="text-sm text-gray-500" id="titleCounterContainer">
+                        <span id="charCount" class="font-medium">0</span> / 120
+                    </div>
+                </div>
+                <textarea
+                    id="titleInput"
+                    rows="3"
+                    class="mt-2 block w-full border-gray-300 p-3 border"
+                    placeholder="Why Is Associate Editor Cam Wilson So Handsome? An Investigation."
+                ></textarea>
+            </div>
+
+            <!-- Previews Section -->
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Facebook Preview -->
+                <div>
+                    <h2 class="text-lg font-bold text-gray-900 mb-2">Facebook Preview (63 chars)</h2>
+                    <div class="border border-gray-300 p-4 min-h-[80px]">
+                        <span class="text-sm text-gray-500 uppercase">CRIKEY.COM.AU</span>
+                        <h3 id="fbPreviewTitle" class="text-md font-semibold text-gray-800 break-words">
+                            Your Title Will Appear Here
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Twitter (X) Preview -->
+                <div>
+                    <h2 class="text-lg font-bold text-gray-900 mb-2">X (Twitter) Preview (70 chars)</h2>
+                    <div class="border border-gray-300 p-4 min-h-[80px]">
+                        <h3 id="twitterPreviewTitle" class="text-md font-semibold text-gray-800 break-words">
+                            Your Title Will Appear Here
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extract Input -->
+            <div class="mt-6 pt-6 border-t border-gray-200">
+                <div class="flex justify-between items-baseline">
+                    <label for="extractInput" class="block text-lg font-bold text-gray-900">Extract</label>
+                    <div class="text-sm text-gray-500" id="extractCounterContainer">
+                        <span id="extractCharCount" class="font-medium">0</span> / 200
+                    </div>
+                </div>
+                <textarea
+                    id="extractInput"
+                    rows="3"
+                    class="mt-2 block w-full border-gray-300 p-3 border"
+                    placeholder="Today we explore the pressing question on everyone's mind: what is the secret behind Cam Wilson's rugged good looks? We asked 100 people, and the results will shock you."
+                ></textarea>
+            </div>
+
+            <!-- Standfirst Input -->
+            <div class="mt-6">
+                 <div class="flex justify-between items-baseline">
+                    <label for="standfirstInput" class="block text-lg font-bold text-gray-900">Standfirst</label>
+                    <div class="text-sm text-gray-500" id="standfirstCounterContainer">
+                        <span id="standfirstCharCount" class="font-medium">0</span> / 50-65
+                    </div>
+                </div>
+                <textarea
+                    id="standfirstInput"
+                    rows="3"
+                    class="mt-2 block w-full border-gray-300 p-3 border"
+                    placeholder="He's handsome. He's an editor. What more is there to say?"
+                ></textarea>
+            </div>
+
+            <!-- Social Copy Input 1 -->
+            <div class="mt-6 pt-6 border-t border-gray-200">
+                <div class="flex justify-between items-baseline">
+                    <label for="socialInput1" class="block text-lg font-bold text-gray-900">Social Copy 1</label>
+                    <div class="text-sm text-gray-500" id="socialCounterContainer1">
+                        <span id="socialCopyCharCount1" class="font-medium">0</span> / 255
+                    </div>
+                </div>
+                <textarea
+                    id="socialInput1"
+                    rows="3"
+                    class="mt-2 block w-full border-gray-300 p-3 border"
+                    placeholder="Just how handsome is Cam Wilson? Our associate editor sets a new standard. Click to read our full analysis."
+                ></textarea>
+            </div>
+
+            <!-- Social Copy Input 2 -->
+            <div class="mt-6">
+                <div class="flex justify-between items-baseline">
+                    <label for="socialInput2" class="block text-lg font-bold text-gray-900">Social Copy 2</label>
+                    <div class="text-sm text-gray-500" id="socialCounterContainer2">
+                        <span id="socialCopyCharCount2" class="font-medium">0</span> / 255
+                    </div>
+                </div>
+                <textarea
+                    id="socialInput2"
+                    rows="3"
+                    class="mt-2 block w-full border-gray-300 p-3 border"
+                    placeholder="[Thread] 1/5: Let's talk about Cam Wilson. Not just his reporting, but how distractingly handsome he is. A deep dive."
+                ></textarea>
+            </div>
+
+            <!-- Social Copy Input 3 -->
+            <div class="mt-6">
+                <div class="flex justify-between items-baseline">
+                    <label for="socialInput3" class="block text-lg font-bold text-gray-900">Social Copy 3</label>
+                    <div class="text-sm text-gray-500" id="socialCounterContainer3">
+                        <span id="socialCopyCharCount3" class="font-medium">0</span> / 255
+                    </div>
+                </div>
+                <textarea
+                    id="socialInput3"
+                    rows="3"
+                    class="mt-2 block w-full border-gray-300 p-3 border"
+                    placeholder="It's time we all just admitted it. Cam Wilson is the most handsome man in Australian media. Read more:"
+                ></textarea>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- Define character limits ---
+        const FACEBOOK_LIMIT = 63;
+        const TWITTER_LIMIT = 70;
+        const MAIN_TITLE_LIMIT = 120;
+        const EXTRACT_LIMIT = 200;
+        const STANDFIRST_MIN_LIMIT = 50;
+        const STANDFIRST_MAX_LIMIT = 65;
+        const SOCIAL_LIMIT = 255;
+        const DEFAULT_TEXT = "Your Title Will Appear Here";
+
+        // --- Select all DOM elements ---
+        const titleInput = document.getElementById('titleInput');
+        const charCount = document.getElementById('charCount');
+        const titleCounterContainer = document.getElementById('titleCounterContainer');
+        const fbPreviewTitle = document.getElementById('fbPreviewTitle');
+        const twitterPreviewTitle = document.getElementById('twitterPreviewTitle');
+
+        const extractInput = document.getElementById('extractInput');
+        const extractCharCount = document.getElementById('extractCharCount');
+        const extractCounterContainer = document.getElementById('extractCounterContainer');
+
+        const standfirstInput = document.getElementById('standfirstInput');
+        const standfirstCharCount = document.getElementById('standfirstCharCount');
+        const standfirstCounterContainer = document.getElementById('standfirstCounterContainer');
+
+        const socialInput1 = document.getElementById('socialInput1');
+        const socialCopyCharCount1 = document.getElementById('socialCopyCharCount1');
+        const socialCounterContainer1 = document.getElementById('socialCounterContainer1');
+
+        const socialInput2 = document.getElementById('socialInput2');
+        const socialCopyCharCount2 = document.getElementById('socialCopyCharCount2');
+        const socialCounterContainer2 = document.getElementById('socialCounterContainer2');
+        
+        const socialInput3 = document.getElementById('socialInput3');
+        const socialCopyCharCount3 = document.getElementById('socialCopyCharCount3');
+        const socialCounterContainer3 = document.getElementById('socialCounterContainer3');
+
+        // --- Helper Functions ---
+
+        /**
+         * Truncates text to a specific limit.
+         */
+        function truncateText(text, limit) {
+            if (text.length > limit) {
+                return text.substring(0, limit);
+            }
+            return text;
+        }
+
+        /**
+         * STREAMLINED: Factory function to create a counter-updater for fields with a max limit.
+         */
+        function createMaxLimitUpdater(input, charCountEl, container, limit) {
+            return function() {
+                const length = input.value.length;
+                charCountEl.textContent = length;
+                container.classList.toggle('text-red-600', length > limit);
+                container.classList.toggle('text-gray-500', length <= limit);
+            };
+        }
+
+        /**
+         * Updates only the Facebook and Twitter previews based on the main title input.
+         */
+        function updateMainPreviews() {
+            const text = titleInput.value;
+            
+            // Update Facebook Preview
+            if (text) {
+                fbPreviewTitle.textContent = truncateText(text, FACEBOOK_LIMIT);
+            } else {
+                fbPreviewTitle.textContent = DEFAULT_TEXT;
+            }
+
+            // Update Twitter Preview
+            if (text) {
+                twitterPreviewTitle.textContent = truncateText(text, TWITTER_LIMIT);
+            } else {
+                twitterPreviewTitle.textContent = DEFAULT_TEXT;
+            }
+        }
+
+        /**
+         * Special counter logic for the Standfirst (min/max range).
+         */
+        function updateStandfirstCounter() {
+            const length = standfirstInput.value.length;
+            standfirstCharCount.textContent = length;
+
+            // BUG FIX: Changed 'text-red-6Both' to 'text-red-600'
+            standfirstCounterContainer.classList.remove('text-gray-500', 'text-red-600', 'text-gray-900', 'font-bold');
+
+            if (length === 0) {
+                standfirstCounterContainer.classList.add('text-gray-500');
+            } else if (length >= STANDFIRST_MIN_LIMIT && length <= STANDFIRST_MAX_LIMIT) {
+                standfirstCounterContainer.classList.add('text-gray-900', 'font-bold'); // In range
+            } else { // < 50 or > 65
+                standfirstCounterContainer.classList.add('text-red-600'); // Out of range
+            }
+        }
+        
+        // --- Create Update Functions ---
+        
+        // Use the factory to create updaters for all max-limit fields
+        const updateTitleCounter = createMaxLimitUpdater(titleInput, charCount, titleCounterContainer, MAIN_TITLE_LIMIT);
+        const updateExtractCounter = createMaxLimitUpdater(extractInput, extractCharCount, extractCounterContainer, EXTRACT_LIMIT);
+        const updateSocialCounter1 = createMaxLimitUpdater(socialInput1, socialCopyCharCount1, socialCounterContainer1, SOCIAL_LIMIT);
+        const updateSocialCounter2 = createMaxLimitUpdater(socialInput2, socialCopyCharCount2, socialCounterContainer2, SOCIAL_LIMIT);
+        const updateSocialCounter3 = createMaxLimitUpdater(socialInput3, socialCopyCharCount3, socialCounterContainer3, SOCIAL_LIMIT);
+
+        // --- Add Event Listeners ---
+
+        // Main title input needs to update both its counter AND the previews
+        titleInput.addEventListener('input', () => {
+            updateTitleCounter();
+            updateMainPreviews();
+        });
+
+        extractInput.addEventListener('input', updateExtractCounter);
+        
+        // BUG FIX: Removed stray 'f' from 'fstandfirstInput'
+        standfirstInput.addEventListener('input', updateStandfirstCounter);
+        
+        socialInput1.addEventListener('input', updateSocialCounter1);
+        socialInput2.addEventListener('input', updateSocialCounter2);
+        socialInput3.addEventListener('input', updateSocialCounter3);
+
+        // --- Initial calls on load ---
+        updateTitleCounter();
+        updateMainPreviews();
+        updateExtractCounter();
+        updateStandfirstCounter();
+        updateSocialCounter1();
+        updateSocialCounter2();
+        updateSocialCounter3();
+    </script>
+
+</body>
+</html>
