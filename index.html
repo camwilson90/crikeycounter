@@ -148,6 +148,18 @@
                 ></textarea>
             </div>
 
+            <!-- Copy Button Section -->
+            <div class="mt-8 pt-6 border-t border-gray-300 flex flex-col items-center">
+                <button
+                    id="copyButton"
+                    type="button"
+                    class="bg-red-600 text-white font-semibold py-2 px-5 rounded-lg shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2 transition-colors"
+                >
+                    Add standfirst and social copy to clipboard
+                </button>
+                <span id="copyMessage" class="mt-2 text-green-600 font-medium hidden">Copied!</span>
+            </div>
+
         </div>
     </div>
 
@@ -187,6 +199,10 @@
         const socialInput3 = document.getElementById('socialInput3');
         const socialCopyCharCount3 = document.getElementById('socialCopyCharCount3');
         const socialCounterContainer3 = document.getElementById('socialCounterContainer3');
+
+        // New elements for the copy button
+        const copyButton = document.getElementById('copyButton');
+        const copyMessage = document.getElementById('copyMessage');
 
         // --- Helper Functions ---
 
@@ -232,6 +248,40 @@
                 twitterPreviewTitle.textContent = DEFAULT_TEXT;
             }
         }
+
+        /**
+         * Copies the formatted social text to the clipboard.
+         */
+        function copySocialText() {
+            const textToCopy = `SF: ${standfirstInput.value}
+SC1: ${socialInput1.value}
+SC2: ${socialInput2.value}
+SC3: ${socialInput3.value}`;
+
+            // Use a temporary textarea to reliably copy text
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textToCopy;
+            // Make it invisible and append to the body
+            tempTextArea.style.position = 'absolute';
+            tempTextArea.style.left = '-9999px';
+            document.body.appendChild(tempTextArea);
+            
+            tempTextArea.select();
+            
+            try {
+                document.execCommand('copy');
+                // Show "Copied!" message
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 2000); // Hide after 2 seconds
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+            
+            // Clean up the temporary textarea
+            document.body.removeChild(tempTextArea);
+        }
         
         // --- Create Update Functions ---
         
@@ -256,6 +306,9 @@
         socialInput1.addEventListener('input', updateSocialCounter1);
         socialInput2.addEventListener('input', updateSocialCounter2);
         socialInput3.addEventListener('input', updateSocialCounter3);
+
+        // Add listener for the new copy button
+        copyButton.addEventListener('click', copySocialText);
 
         // --- Initial calls on load ---
         updateTitleCounter();
