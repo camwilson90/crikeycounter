@@ -21,141 +21,184 @@
         .soft-inset-shadow {
             box-shadow: inset 1px 1px 3px rgba(0,0,0,0.05), inset -1px -1px 3px rgba(255,255,255,0.8);
         }
+
+        /* Dark background for social previews to match Twitter/X UI */
+        .twitter-card-bg {
+            background-color: #000; /* Pure black, as seen in the image */
+            color: #fff;
+        }
     </style>
 </head>
 <body class="h-full">
+    
     <div class="min-h-full flex flex-col items-center py-16 px-4 sm:px-6 lg:px-8">
 
-        <div class="max-w-2xl w-full bg-white p-8 sm:p-10 rounded-2xl shadow-xl">
+        <div class="max-w-7xl w-full"> 
 
             <h1 class="text-3xl font-extrabold text-red-600 mb-8">The Crikey Counter</h1>
 
-            <!-- Article Headline -->
-            <div>
-                <div class="flex justify-between items-baseline">
-                    <label for="titleInput" class="block text-sm font-semibold text-gray-700">Article Headline</label>
-                    <div class="text-sm text-gray-500" id="titleCounterContainer">
-                        <span id="charCount" class="font-medium">0</span> / 120
+            
+            <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 lg:gap-12"> 
+
+                
+                <div class="lg:col-span-7"> 
+                    
+                    <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-xl space-y-6">
+
+                        
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <label for="titleInput" class="block text-sm font-semibold text-gray-700">Article Headline</label>
+                                <div class="text-sm text-gray-500" id="titleCounterContainer">
+                                    <span id="charCount" class="font-medium">0</span> / 120
+                                </div>
+                            </div>
+                            <textarea
+                                id="titleInput"
+                                rows="3"
+                                class="mt-2 block w-full border border-gray-200 p-3 rounded-lg soft-inset-shadow"
+                                placeholder="Why Is Associate Editor Cam Wilson So Handsome? An Investigation."
+                            ></textarea>
+                        </div>
+
+                        
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <label for="extractInput" class="block text-sm font-semibold text-gray-700">Extract</label>
+                                <div class="text-sm text-gray-500" id="extractCounterContainer">
+                                    <span id="extractCharCount" class="font-medium">0</span> / 200
+                                </div>
+                            </div>
+                            <textarea
+                                id="extractInput"
+                                rows="3"
+                                class="mt-2 block w-full border border-gray-200 p-3 rounded-lg soft-inset-shadow"
+                                placeholder="Today we explore the pressing question on everyone's mind: what is the secret behind Cam Wilson's rugged good looks? We asked 100 people, and the results will shock you."
+                            ></textarea>
+                        </div>
+
+                        
+                        
+
+
+                        
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <label for="standfirstInput" class="block text-sm font-semibold text-gray-700">Standfirst</label>
+                                <div class="text-sm text-gray-500" id="standfirstCounterContainer">
+                                    <span id="standfirstCharCount" class="font-medium">0</span> / 350
+                                </div>
+                            </div>
+                            <textarea
+                                id="standfirstInput"
+                                rows="3"
+                                class="mt-2 block w-full border border-gray-200 p-3 rounded-lg soft-inset-shadow"
+                                placeholder="He's handsome. He's an editor. What more is there to say?"
+                            ></textarea>
+                        </div>
+
+                        
+                        <div class="pt-6 border-t border-gray-300"> 
+                            <div class="flex justify-between items-baseline">
+                                <label for="socialInput1" class="block text-sm font-semibold text-gray-700">Social Copy 1</label>
+                                <div class="text-sm text-gray-500" id="socialCounterContainer1">
+                                    <span id="socialCopyCharCount1" class="font-medium">0</span> / 255
+                                </div>
+                            </div>
+                            <textarea
+                                id="socialInput1"
+                                rows="3"
+                                class="mt-2 block w-full border border-gray-200 p-3 rounded-lg soft-inset-shadow social-copy-input"
+                                placeholder="Just how handsome is Cam Wilson? Our associate editor sets a new standard. Click to read our full analysis."
+                            ></textarea>
+                            
+                            
+                        </div>
+
+                        
+                        <div id="additional-social-fields" class="space-y-6"></div>
+
+                        
+                        <div class="pt-6 border-t border-gray-300 flex flex-col items-center">
+                            <button id="copyButton" class="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 transition duration-150 ease-in-out">
+                                Add standfirst and social copy to clipboard
+                            </button>
+                            <span id="copyMessage" class="mt-3 text-sm font-medium text-green-600 opacity-0 transition-opacity duration-300">
+                                Copied!
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <textarea
-                    id="titleInput"
-                    rows="3"
-                    class="mt-2 block w-full border border-gray-200 p-3 rounded-lg soft-inset-shadow"
-                    placeholder="Why Is Associate Editor Cam Wilson So Handsome? An Investigation."
-                ></textarea>
-            </div>
 
-            <!-- Extract (Moved Up) -->
-            <div class="mt-6">
-                <div class="flex justify-between items-baseline">
-                    <label for="extractInput" class="block text-sm font-semibold text-gray-700">Extract</label>
-                    <div class="text-sm text-gray-500" id="extractCounterContainer">
-                        <span id="extractCharCount" class="font-medium">0</span> / 200
+                
+                <div class="lg:col-span-5">
+                    
+                    <div class="lg:sticky lg:top-16 space-y-6">
+
+                        
+                        <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-xl">
+                            <h2 class="text-base font-semibold text-gray-800 mb-4">Live Article Preview</h2>
+                            
+                            <div class="border border-gray-200 rounded-lg p-6 soft-inset-shadow bg-white">
+                                <h3 id="crikeyPreviewTitle" class="text-3xl font-extrabold text-gray-900 break-words" style="line-height: 1.2;">
+                                    Why Is Associate Editor Cam Wilson So Handsome? An Investigation.
+                                </h3>
+                                <p id="crikeyPreviewExtract" class="mt-4 text-lg text-gray-700 break-words" style="line-height: 1.6;">
+                                    Today we explore the pressing question on everyone's mind: what is the secret behind Cam Wilson's rugged good looks? We asked 100 people, and the results will shock you.
+                                </p>
+                            </div>
+                        </div>
+
+                        
+                        <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-xl">
+                            <h2 class="text-base font-semibold text-gray-800 mb-4">Social Media Card Previews</h2>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                
+                                <div>
+                                    <h3 class="text-sm font-semibold text-gray-800 mb-2">Facebook (63 chars)</h3>
+                                    <div class="border border-gray-200 rounded-lg p-4 min-h-[80px] soft-inset-shadow">
+                                        <span class="text-xs text-gray-500 uppercase">CRIKEY.COM.AU</span>
+                                        <p id="fbPreviewTitle" class="text-sm font-semibold text-gray-800 break-words">
+                                            Your Title Will Appear Here
+                                        </p>
+                                    </div>
+                                </div>
+
+                                
+                                <div>
+                                    <h3 class="text-sm font-semibold text-gray-800 mb-2">X (Twitter) (70 chars)</h3>
+                                    <div class="border border-gray-200 rounded-lg p-4 min-h-[80px] soft-inset-shadow">
+                                        <p id="twitterPreviewTitle" class="text-sm font-semibold text-gray-800 break-words">
+                                            Your Title Will Appear Here
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-xl">
+                            <h2 class="text-base font-semibold text-gray-800 mb-4">Social Copy Tweet Previews</h2>
+                            <div id="socialTweetPreviews" class="space-y-4">
+                                
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <textarea
-                    id="extractInput"
-                    rows="3"
-                    class="mt-2 block w-full border border-gray-200 p-3 rounded-lg soft-inset-shadow"
-                    placeholder="Today we explore the pressing question on everyone's mind: what is the secret behind Cam Wilson's rugged good looks? We asked 100 people, and the results will shock you."
-                ></textarea>
+
             </div>
-
-            <!-- New Crikey Article Style Preview -->
-            <div class="mt-6 pt-6 border-t border-gray-300">
-                <h2 class="text-base font-semibold text-gray-800 mb-4">Live Article Preview</h2>
-                <!-- This container mimics the style from the image -->
-                <div class="border border-gray-200 rounded-lg p-6 soft-inset-shadow bg-white">
-                    <h3 id="crikeyPreviewTitle" class="text-3xl font-extrabold text-gray-900 break-words" style="line-height: 1.2;">
-                        Why Is Associate Editor Cam Wilson So Handsome? An Investigation.
-                    </h3>
-                    <p id="crikeyPreviewExtract" class="mt-4 text-lg text-gray-700 break-words" style="line-height: 1.6;">
-                        Today we explore the pressing question on everyone's mind: what is the secret behind Cam Wilson's rugged good looks? We asked 100 people, and the results will shock you.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Social Previews Section -->
-            <div class="mt-6 pt-6 border-t border-gray-300 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <!-- Facebook Preview -->
-                <div>
-                    <h2 class="text-base font-semibold text-gray-800 mb-2">Facebook Preview (63 chars)</h2>
-                    <div class="border border-gray-200 rounded-lg p-4 min-h-[80px] soft-inset-shadow">
-                        <span class="text-sm text-gray-500 uppercase">CRIKEY.COM.AU</span>
-                        <h3 id="fbPreviewTitle" class="text-md font-semibold text-gray-800 break-words">
-                            Your Title Will Appear Here
-                        </h3>
-                    </div>
-                </div>
-
-                <!-- Twitter Preview -->
-                <div>
-                    <h2 class="text-base font-semibold text-gray-800 mb-2">X (Twitter) Preview (70 chars)</h2>
-                    <div class="border border-gray-200 rounded-lg p-4 min-h-[80px] soft-inset-shadow">
-                        <h3 id="twitterPreviewTitle" class="text-md font-semibold text-gray-800 break-words">
-                            Your Title Will Appear Here
-                        </h3>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Standfirst -->
-            <div class="mt-6 pt-6 border-t border-gray-300">
-                 <div class="flex justify-between items-baseline">
-                    <label for="standfirstInput" class="block text-sm font-semibold text-gray-700">Standfirst</label>
-                    <div class="text-sm text-gray-500" id="standfirstCounterContainer">
-                        <span id="standfirstCharCount" class="font-medium">0</span> / 350
-                    </div>
-                </div>
-                <textarea
-                    id="standfirstInput"
-                    rows="3"
-                    class="mt-2 block w-full border border-gray-200 p-3 rounded-lg soft-inset-shadow"
-                    placeholder="He's handsome. He's an editor. What more is there to say?"
-                ></textarea>
-            </div>
-
-            <!-- Social Copy Input 1 -->
-            <div class="mt-6 pt-6 border-t border-gray-300">
-                <div class="flex justify-between items-baseline">
-                    <label for="socialInput1" class="block text-sm font-semibold text-gray-700">Social Copy 1</label>
-                    <div class="text-sm text-gray-500" id="socialCounterContainer1">
-                        <span id="socialCopyCharCount1" class="font-medium">0</span> / 255
-                    </div>
-                </div>
-                <textarea
-                    id="socialInput1"
-                    rows="3"
-                    class="mt-2 block w-full border border-gray-200 p-3 rounded-lg soft-inset-shadow social-copy-input"
-                    placeholder="Just how handsome is Cam Wilson? Our associate editor sets a new standard. Click to read our full analysis."
-                ></textarea>
-            </div>
-
-            <!-- Container for new social fields -->
-            <div id="additional-social-fields"></div>
-
-            <!-- Copy Button Section -->
-            <div class="mt-8 pt-6 border-t border-gray-300 flex flex-col items-center">
-                <button id="copyButton" class="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 transition duration-150 ease-in-out">
-                    Add standfirst and social copy to clipboard
-                </button>
-                <span id="copyMessage" class="mt-3 text-sm font-medium text-green-600 opacity-0 transition-opacity duration-300">
-                    Copied!
-                </span>
-            </div>
-
         </div>
     </div>
 
     <script>
         // --- Define character limits ---
         const FACEBOOK_LIMIT = 63;
-        const TWITTER_LIMIT = 70;
+        const TWITTER_LIMIT = 70; // This is for the card title
         const MAIN_TITLE_LIMIT = 120;
         const EXTRACT_LIMIT = 200;
         const STANDFIRST_LIMIT = 350;
-        const SOCIAL_LIMIT = 255;
+        const SOCIAL_LIMIT = 255; // This is for the tweet body text
         const DEFAULT_TEXT = "Your Title Will Appear Here";
         // Default text for the new Crikey-style preview
         const CRIKEY_TITLE_DEFAULT = "Why Is Associate Editor Cam Wilson So Handsome? An Investigation.";
@@ -180,12 +223,14 @@
         const standfirstCharCount = document.getElementById('standfirstCharCount');
         const standfirstCounterContainer = document.getElementById('standfirstCounterContainer');
 
-        const socialInput1 = document.getElementById('socialInput1');
+        const socialInput1 = document.getElementById('socialInput1'); // Initial social copy field
         const socialCopyCharCount1 = document.getElementById('socialCopyCharCount1');
         const socialCounterContainer1 = document.getElementById('socialCounterContainer1');
         
         // Container for dynamic fields
         const additionalSocialFieldsContainer = document.getElementById('additional-social-fields');
+        // Container for dynamic tweet previews
+        const socialTweetPreviewsContainer = document.getElementById('socialTweetPreviews'); 
         let socialFieldCount = 1; // Keep track of how many fields we have
 
         // New elements for the copy button
@@ -217,7 +262,7 @@
         }
 
         /**
-         * Updates only the Facebook and Twitter previews based on the main title input.
+         * Updates only the Facebook and Twitter card title previews.
          */
         function updateMainPreviews() {
             const text = titleInput.value;
@@ -249,10 +294,36 @@
         }
 
         /**
+         * Updates the dynamic social copy tweet previews.
+         */
+        function updateSocialTweetPreviews() {
+            const allSocialInputs = document.querySelectorAll('.social-copy-input');
+            socialTweetPreviewsContainer.innerHTML = ''; // Clear existing tweets
+
+            allSocialInputs.forEach((input, index) => {
+                const text = input.value;
+                if (text) { // Only show tweet preview if there's text
+                    const tweetWrapper = document.createElement('div');
+                    tweetWrapper.className = 'p-4 rounded-lg twitter-card-bg text-sm'; // Dark background
+                    tweetWrapper.innerHTML = `
+                        <div class="flex items-center mb-2">
+                            <span class="font-bold">Crikey</span>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" alt="Verified" class="w-3 h-3 ml-1 mr-1">
+                            <span class="text-gray-400">@crikey_news &middot; 4h</span>
+                        </div>
+                        <p class="text-white break-words">${text}</p>
+                        <a href="https://crikey.com.au/2025/11/12/aus..." target="_blank" class="text-blue-400 text-xs mt-2 block hover:underline">crikey.com.au/2025/11/12/aus...</a>
+                    `;
+                    socialTweetPreviewsContainer.appendChild(tweetWrapper);
+                }
+            });
+        }
+
+
+        /**
          * Copies the formatted social text to the clipboard.
          */
         function copySocialText() {
-            // Find ALL social copy inputs, not just the static ones
             const allSocialInputs = document.querySelectorAll('.social-copy-input');
             
             let textToCopy = `SF: ${standfirstInput.value}`;
@@ -293,11 +364,8 @@
             socialFieldCount++;
             const index = socialFieldCount;
 
-            // Create the new elements
             const newFieldWrapper = document.createElement('div');
-            newFieldWrapper.className = 'mt-6'; // New fields don't need the top border
 
-            // Use innerHTML for easy creation of the new field block
             newFieldWrapper.innerHTML = `
                 <div class="flex justify-between items-baseline">
                     <label for="socialInput${index}" class="block text-sm font-semibold text-gray-700">Social Copy ${index}</label>
@@ -313,17 +381,18 @@
                 ></textarea>
             `;
             
-            // Append the new field to the container
             additionalSocialFieldsContainer.appendChild(newFieldWrapper);
             
-            // Now, find the new elements we just added
             const newTextarea = document.getElementById(`socialInput${index}`);
             const newCharCount = document.getElementById(`socialCopyCharCount${index}`);
             const newCounterContainer = document.getElementById(`socialCounterContainer${index}`);
             
             // 1. Add its own character counter listener
             const newCounterUpdater = createMaxLimitUpdater(newTextarea, newCharCount, newCounterContainer, SOCIAL_LIMIT);
-            newTextarea.addEventListener('input', newCounterUpdater);
+            newTextarea.addEventListener('input', () => {
+                newCounterUpdater();
+                updateSocialTweetPreviews(); // Update tweet previews when this field changes
+            });
             
             // 2. Add the 'once' listener to create the *next* field
             newTextarea.addEventListener('input', addNewSocialField, { once: true });
@@ -343,19 +412,22 @@
         titleInput.addEventListener('input', () => {
             updateTitleCounter();
             updateMainPreviews();
-            updateCrikeyPreview(); // Also update the new preview
+            updateCrikeyPreview();
         });
 
         // Extract input needs to update its counter AND the new preview
         extractInput.addEventListener('input', () => {
             updateExtractCounter();
-            updateCrikeyPreview(); // Also update the new preview
+            updateCrikeyPreview();
         });
 
         standfirstInput.addEventListener('input', updateStandfirstCounter);
         
-        // Add the counter for social 1
-        socialInput1.addEventListener('input', updateSocialCounter1);
+        // Initial social copy input needs to update its counter AND the tweet previews
+        socialInput1.addEventListener('input', () => {
+            updateSocialCounter1();
+            updateSocialTweetPreviews(); 
+        });
         // Add the 'once' listener to social 1 to create social 2
         socialInput1.addEventListener('input', addNewSocialField, { once: true });
 
@@ -365,10 +437,11 @@
         // --- Initial calls on load ---
         updateTitleCounter();
         updateMainPreviews();
-        updateCrikeyPreview(); // Add initial call for the new preview
+        updateCrikeyPreview();
         updateExtractCounter();
         updateStandfirstCounter();
         updateSocialCounter1();
+        updateSocialTweetPreviews(); // Initial call for first tweet preview
     </script>
 
 </body>
